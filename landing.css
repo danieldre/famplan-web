@@ -1,0 +1,734 @@
+/* Landing page only (index.html). Builds on style.css tokens. Persuade mode in
+   DESIGN.md: same tokens, the homes' portraits and nights shown large. Ink is
+   the only action colour; every hue on the page belongs to a home. */
+
+/* Homes: band, tint and ink per hue, dark values through the same names. */
+.home-pine { --band: #037465; --tint: #dff6f1; --hink: #03483e; }
+.home-plum { --band: #814a8d; --tint: #f8ebfb; --hink: #512b5a; }
+.home-ochre { --band: #855904; --tint: #faeede; --hink: #533603; }
+.home-ocean { --band: #006c97; --tint: #e1f3ff; --hink: #01435f; }
+:root { --on-band: #ffffff; }
+
+@media (prefers-color-scheme: dark) {
+  .home-pine { --band: #4bc1ad; --tint: #0b2d27; --hink: #9ee1d3; }
+  .home-plum { --band: #ca94d6; --tint: #2f2033; --hink: #e6c3ee; }
+  .home-ochre { --band: #d3a056; --tint: #32230e; --hink: #eccb9e; }
+  .home-ocean { --band: #5eb6e6; --tint: #112937; --hink: #a4d9f9; }
+  :root { --on-band: #121416; }
+}
+
+/* Page frame: wider than the 800 reading column of the other pages. */
+.landing main {
+  max-width: none;
+  padding: 0;
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.skip {
+  position: absolute;
+  left: 16px;
+  top: -64px;
+  background: var(--ink);
+  color: var(--on-ink);
+  padding: 12px 16px;
+  border-radius: 6px;
+  z-index: 2;
+}
+
+.skip:focus {
+  top: 16px;
+}
+
+.lp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.lp-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lp-nav a:not(.button) {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9375rem;
+  padding: 12px;
+}
+
+.lp-nav a:not(.button):hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.lp-nav .button {
+  min-height: 44px;
+  padding: 10px 18px;
+  font-size: 0.9375rem;
+  margin-left: 8px;
+}
+
+.disp {
+  font-family: var(--display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  margin: 0;
+}
+
+.button-primary:hover {
+  opacity: 0.9;
+}
+
+/* Hero: the headline, then the family's homes on one ground line. */
+.hero {
+  text-align: center;
+  padding-top: 56px;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 9vw, 6.5rem);
+}
+
+.hero .sub {
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  line-height: 1.4;
+  color: var(--muted);
+  max-width: 34ch;
+  margin: 24px auto 32px;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px 24px;
+}
+
+.cta-row .button {
+  min-height: 52px;
+  padding: 14px 26px;
+}
+
+.street {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 760px;
+  margin: 72px auto 0;
+  padding: 0;
+  list-style: none;
+}
+
+.street li {
+  margin: 0;
+}
+
+.street svg {
+  display: block;
+  width: 100%;
+  max-width: 168px;
+  aspect-ratio: 96 / 80;
+  margin: 0 auto;
+}
+
+.street .name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-weight: 700;
+  font-size: 0.9375rem;
+}
+
+/* Home portraits: one grid, ink line, band roof and door, tint walls. */
+.ln {
+  stroke: var(--hink);
+  stroke-width: 2.2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.roof { fill: var(--band); }
+.wall { fill: var(--tint); }
+.win { fill: var(--surface); }
+.no { fill: none; }
+
+/* Monogram: band square, the home's initial. */
+.mono-sq {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: var(--band);
+  color: var(--on-band);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Four weeks of nights, coloured by home, each with its initial. */
+.band-wrap {
+  max-width: 1072px;
+  margin: 56px auto 0;
+}
+
+.band {
+  display: grid;
+  grid-template-columns: repeat(28, minmax(0, 1fr));
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.band li {
+  margin: 0;
+  min-height: 34px;
+  border-radius: 4px;
+  display: grid;
+  place-items: center;
+  background: var(--band);
+  color: var(--on-band);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.band li.tonight {
+  outline: 2px solid var(--ink);
+  outline-offset: 1px;
+}
+
+.band-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 12px;
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+/* Sections. */
+.section {
+  padding-top: 112px;
+}
+
+.section-head {
+  max-width: 640px;
+}
+
+.eyebrow {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin: 0 0 12px;
+}
+
+.section h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin: 0 0 16px;
+}
+
+.section .lead {
+  color: var(--muted);
+  margin: 0;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 72px;
+  align-items: center;
+}
+
+.points {
+  list-style: none;
+  padding: 0;
+  margin: 28px 0 0;
+}
+
+.points li {
+  display: flex;
+  gap: 12px;
+  margin: 0;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+
+.points li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.icon {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  color: var(--ink);
+}
+
+.duo {
+  fill: var(--tint, none);
+}
+
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.join h2 {
+  font-size: clamp(2.25rem, 5.5vw, 3.75rem);
+  margin: 0 0 16px;
+}
+
+/* The phone: Today, drawn with the app's own components. */
+.phone {
+  width: min(100%, 360px);
+  margin: 0 auto;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 44px;
+  box-shadow: var(--shadow-2);
+  padding: 20px 14px 22px;
+}
+
+.phone-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 6px 0;
+}
+
+.phone-bar .when {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.phone-bar .icons {
+  display: flex;
+  gap: 12px;
+}
+
+.place {
+  position: relative;
+  margin-top: 64px;
+  background: var(--tint);
+  color: var(--hink);
+  border-radius: 12px;
+  box-shadow: var(--shadow-2);
+  padding: 20px 18px;
+}
+
+.place svg {
+  position: absolute;
+  right: 10px;
+  top: -58px;
+  width: 140px;
+  height: 117px;
+}
+
+.place-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.place-answer {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 12px 0 8px;
+  max-width: 9em;
+}
+
+.place-line {
+  margin: 0;
+  font-size: 0.9375rem;
+}
+
+.num {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.mini-label {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin: 20px 4px 8px;
+}
+
+.mini-group {
+  background: var(--surface);
+  border-radius: 12px;
+  box-shadow: var(--shadow-1);
+  margin: 0;
+  padding: 0 14px;
+  list-style: none;
+}
+
+.mini-group li {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin: 0;
+  padding: 12px 0;
+  font-size: 0.9375rem;
+  line-height: 1.3;
+}
+
+.mini-group li + li {
+  border-top: 1px solid var(--line);
+}
+
+.mini-group .t2 {
+  display: block;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.wait {
+  background: var(--surface);
+  border-radius: 12px;
+  box-shadow: var(--shadow-1);
+  padding: 14px;
+  margin-top: 12px;
+}
+
+.wait p {
+  display: flex;
+  gap: 10px;
+  margin: 0 0 12px;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 1.3;
+}
+
+.wait .bs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.wait .b {
+  display: grid;
+  place-items: center;
+  min-height: 40px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.wait .b.sec {
+  border: 1.5px solid var(--line);
+}
+
+.wait .b.pri {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+
+/* The year: one row per month, one cell per night in the home's band. */
+.year {
+  background: var(--raised);
+  border-radius: 12px;
+  box-shadow: var(--shadow-2);
+  padding: 24px;
+}
+
+.year-rows {
+  margin: 0;
+}
+
+.m {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 5px;
+}
+
+.m > span {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.cells {
+  display: grid;
+  grid-template-columns: repeat(31, minmax(0, 1fr));
+  gap: 1px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.cells i {
+  display: block;
+  height: 18px;
+  background: var(--band);
+}
+
+.cells i.hol {
+  box-shadow: inset 0 -3px 0 var(--ink);
+}
+
+.cells i.today {
+  outline: 2px solid var(--ink);
+  outline-offset: -2px;
+}
+
+.year .chips {
+  margin: 18px 0 0;
+}
+
+.year .key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  align-items: center;
+  margin-top: 4px;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.key-hol {
+  display: inline-block;
+  width: 18px;
+  height: 3px;
+  background: var(--ink);
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.key-today {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--ink);
+  border-radius: 2px;
+  vertical-align: -1px;
+  margin-right: 6px;
+}
+
+/* Chips here use the page's home classes. */
+.chip.home-pine,
+.chip.home-plum {
+  background: var(--tint);
+  color: var(--hink);
+}
+
+.chip.home-pine .swatch,
+.chip.home-plum .swatch {
+  background: var(--band);
+}
+
+/* Families: plain cards, an ink icon, no coloured tiles. */
+.families {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin: 40px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.families li {
+  margin: 0;
+  background: var(--surface);
+  border-radius: 12px;
+  box-shadow: var(--shadow-1);
+  padding: 22px 20px;
+}
+
+.families h3 {
+  margin: 14px 0 6px;
+  font-size: 1.0625rem;
+}
+
+.families p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+
+/* Privacy: a raised sheet with the promises as rows. */
+.privacy {
+  background: var(--raised);
+  border-radius: 12px;
+  box-shadow: var(--shadow-2);
+  padding: 48px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 56px;
+}
+
+.privacy .points {
+  margin: 0;
+}
+
+.privacy .points li:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.privacy .points li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.tag {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 9999px;
+  padding: 2px 10px;
+}
+
+/* Closing call to action. */
+.join {
+  text-align: center;
+  padding-top: 120px;
+  padding-bottom: 112px;
+}
+
+.join .lead {
+  max-width: 40ch;
+  margin: 0 auto 32px;
+}
+
+.join .note {
+  margin: 20px auto 0;
+  max-width: 44ch;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.lp-footer {
+  max-width: 1120px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* Tablet. */
+@media (max-width: 960px) {
+  .split,
+  .privacy {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 48px;
+  }
+  .split.reverse > :first-child {
+    order: 2;
+  }
+  .families {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .privacy {
+    padding: 32px;
+  }
+}
+
+/* Phone. */
+@media (max-width: 640px) {
+  .wrap,
+  .lp-footer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .lp-nav a:not(.button) {
+    display: none;
+  }
+  .lp-nav .button {
+    margin-left: 0;
+    padding: 10px 14px;
+  }
+  .hero {
+    padding-top: 32px;
+  }
+  .cta-row {
+    flex-direction: column;
+  }
+  .cta-row .button {
+    width: 100%;
+  }
+  .street {
+    gap: 8px;
+    margin-top: 48px;
+  }
+  .street .name {
+    font-size: 0.8125rem;
+    flex-direction: column;
+    gap: 6px;
+    line-height: 1.2;
+  }
+  .band {
+    grid-template-columns: repeat(14, minmax(0, 1fr));
+  }
+  .band li {
+    min-height: 28px;
+  }
+  .section {
+    padding-top: 80px;
+  }
+  .families {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .privacy {
+    padding: 24px 20px;
+  }
+  .year {
+    padding: 16px 14px;
+  }
+  .m {
+    grid-template-columns: 26px minmax(0, 1fr);
+    gap: 6px;
+  }
+  .cells i {
+    height: 14px;
+  }
+  .join {
+    padding-top: 88px;
+    padding-bottom: 80px;
+  }
+}
+
+/* Dark mode: no shadows, lightness carries depth (style.css zeroes them). */
+@media (prefers-color-scheme: dark) {
+  .phone {
+    border-color: var(--line);
+    background: var(--paper);
+  }
+}

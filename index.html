@@ -5,41 +5,146 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="no-referrer">
-  <title>Famplan: one calendar for every home</title>
-  <meta name="description" content="Famplan is a calendar, task list and expense log for every adult around a child, across one or more homes. In a closed test.">
+  <title>Famplan: many homes, one calendar</title>
+  <meta name="description" content="Where your child sleeps tonight, who picks up and what goes in the bag, clear for every adult in every home. Famplan is in a closed test.">
+  <meta property="og:title" content="Famplan: many homes, one calendar">
+  <meta property="og:description" content="Where your child sleeps tonight, who picks up and what goes in the bag, clear for every adult in every home.">
+  <meta property="og:url" content="https://getfamplan.app/">
   <meta name="color-scheme" content="light dark">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/fonts/BricolageGrotesque_700Bold.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/landing.css">
 </head>
-<body>
-  <header class="site-header">
+<body class="landing">
+  <svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false"><defs><symbol id="h-terrace" viewBox="0 0 96 80"><g class="ln"><rect class="roof" x="62" y="14" width="9" height="16"/><rect class="wall" x="18" y="36" width="60" height="40"/><path class="roof" d="M13 38 L48 13 L83 38 Z"/><rect class="win" x="25" y="44" width="15" height="13" rx="1.5"/><rect class="win" x="56" y="44" width="15" height="13" rx="1.5"/><path class="no" d="M32.5 44 V57 M25 50.5 H40 M63.5 44 V57 M56 50.5 H71"/><path class="roof" d="M42 76 V64 a6 6 0 0 1 12 0 V76"/><path class="no" d="M6 76 H90"/></g></symbol><symbol id="h-flats" viewBox="0 0 96 80"><g class="ln"><rect class="wall" x="22" y="12" width="52" height="64"/><rect class="roof" x="19" y="10" width="58" height="6" rx="1"/><rect class="win" x="29" y="22" width="11" height="10" rx="1"/><rect class="win" x="56" y="22" width="11" height="10" rx="1"/><rect class="win" x="29" y="40" width="11" height="10" rx="1"/><rect class="win" x="56" y="40" width="11" height="10" rx="1"/><path class="no" d="M26 33 H44 M52 33 H70 M26 51 H44 M52 51 H70"/><rect class="roof" x="41" y="60" width="14" height="16"/><path class="no" d="M6 76 H90"/></g></symbol><symbol id="h-cottage" viewBox="0 0 96 80"><g class="ln"><rect class="wall" x="16" y="44" width="64" height="32"/><path class="roof" d="M10 47 C14 30 30 16 48 16 C66 16 82 30 86 47 Z"/><rect class="win" x="23" y="52" width="13" height="11" rx="1.5"/><rect class="win" x="60" y="52" width="13" height="11" rx="1.5"/><path class="roof" d="M42 76 V62 a6 6 0 0 1 12 0 V76"/><circle class="win" cx="48" cy="33" r="5"/><path class="no" d="M6 76 H90"/></g></symbol><symbol id="h-boat" viewBox="0 0 96 80"><g class="ln"><rect class="wall" x="26" y="38" width="46" height="24"/><path class="roof" d="M22 39 H76 L70 31 H28 Z"/><circle class="win" cx="37" cy="50" r="5"/><circle class="win" cx="53" cy="50" r="5"/><rect class="roof" x="62" y="45" width="6" height="17"/><path class="roof" d="M10 62 H86 L80 72 H16 Z"/><path class="no" d="M6 77 q6 -3 12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0"/></g></symbol><symbol id="i-bag" viewBox="0 0 24 24"><path class="duo" d="M6 9h12v10a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 6 19z"/><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 0 1 12 0v10a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 6 19z"/><path d="M9 14h6v3H9zM10 4.5V3h4v1.5"/></g></symbol><symbol id="i-book" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19.5v-14a1 1 0 0 1 1-1h12v14H6.5A1.5 1.5 0 0 0 5 20a1.5 1.5 0 0 0 1.5 1.5H18"/></g></symbol><symbol id="i-swap" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h14l-3.5-3.5M20 16H6l3.5 3.5"/></g></symbol><symbol id="i-inbox" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path d="M4 14h4.5l1.5 2h4l1.5-2H20"/></g></symbol><symbol id="i-gear" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v2.2M12 18.8V21M3 12h2.2M18.8 12H21M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M5.6 18.4l1.6-1.6M16.8 7.2l1.6-1.6"/></g></symbol><symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="1.5"/><path d="M4 9h16M8 3v4M16 3v4"/></g></symbol><symbol id="i-list" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6h10M10 12h10M10 18h10M3.5 6l1.5 1.5L7.5 5M3.5 12l1.5 1.5L7.5 11M3.5 18l1.5 1.5L7.5 17"/></g></symbol><symbol id="i-house" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-8 9 8M5 10.5V20h14v-9.5M10 20v-5h4v5"/></g></symbol><symbol id="i-key" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4.5"/><path d="M11.3 11.7L20 3M17 6l2.5 2.5M14.5 8.5l2 2"/></g></symbol><symbol id="i-eye" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></g></symbol><symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/><path d="M4 4l16 16"/></g></symbol><symbol id="i-receipt" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3.5h14v17l-2.3-1.5-2.4 1.5-2.3-1.5-2.4 1.5-2.3-1.5L5 20.5zM8.5 8h7M8.5 12h7M8.5 16h4"/></g></symbol><symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="1.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5M12 14.5v2.5"/></g></symbol></defs></svg>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="wrap lp-header">
     <a class="wordmark" href="/">Famplan</a>
+    <nav class="lp-nav" aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#privacy">Privacy</a>
+      <a class="button button-primary" href="mailto:support@getfamplan.app?subject=Famplan%20closed%20test">Join the closed test</a>
+    </nav>
   </header>
 
-  <main>
-    <h1>Where your child sleeps tonight, and everything that goes with it</h1>
-    <p class="lead">Famplan is one place for every adult around a child: parents, partners, carers, grandparents. Across one home, two, or more.</p>
-
-    <div class="group raised">
-      <ul>
-        <li><strong>The nights, at a glance.</strong> A custody schedule each home agrees to, coloured by home, never by person.</li>
-        <li><strong>Who picks up, and what travels.</strong> Pickups, handovers and the bag that goes with them.</li>
-        <li><strong>Tasks, lists and shared costs.</strong> Split the way your family splits them, in your own currency.</li>
-        <li><strong>Each person sees what’s theirs to see.</strong> Private, one home, or the whole family: you choose for every item.</li>
-      </ul>
-    </div>
-
-    <div class="message message-info" role="status">
-      <svg viewBox="0 0 256 256" aria-hidden="true" focusable="false"><circle cx="128" cy="128" r="96" fill="none" stroke="currentColor" stroke-width="16"/><path fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" d="M120 120h8v56h8"/><circle cx="126" cy="84" r="12" fill="currentColor"/></svg>
-      <div>
-        <p><strong>In a closed test.</strong> Famplan isn’t in the App Store or Google Play yet. If someone invited you, ask them to add you as a tester, then open their invite link again.</p>
+  <main id="main">
+    <section class="wrap hero" aria-labelledby="hero-title">
+      <h1 class="disp" id="hero-title">Many homes.<br>One calendar.</h1>
+      <p class="sub">Where your child sleeps tonight, who picks up, and what goes in the bag. Clear for every adult, in every home.</p>
+      <div class="cta-row">
+        <a class="button button-primary" href="mailto:support@getfamplan.app?subject=Famplan%20closed%20test">Join the closed test</a>
+        <a href="#join">Got an invite link?</a>
       </div>
-    </div>
 
-    <p class="secondary">No ads. No selling of data. No location tracking. Children don’t have accounts; their details are kept on their parents’ behalf.</p>
+      <ul class="street" aria-label="Four example homes"><li class="home-pine"><svg role="img" aria-label="Elm Street, drawn as a terrace house" focusable="false"><use href="#h-terrace"/></svg><span class="name"><span class="mono-sq" aria-hidden="true">E</span>Elm Street</span></li><li class="home-plum"><svg role="img" aria-label="Harbour Flat, drawn as a block of flats" focusable="false"><use href="#h-flats"/></svg><span class="name"><span class="mono-sq" aria-hidden="true">H</span>Harbour Flat</span></li><li class="home-ochre"><svg role="img" aria-label="Rose Cottage, drawn as a cottage" focusable="false"><use href="#h-cottage"/></svg><span class="name"><span class="mono-sq" aria-hidden="true">R</span>Rose Cottage</span></li><li class="home-ocean"><svg role="img" aria-label="The Boat, drawn as a houseboat" focusable="false"><use href="#h-boat"/></svg><span class="name"><span class="mono-sq" aria-hidden="true">B</span>The Boat</span></li></ul>
+
+      <div class="band-wrap">
+        <ul class="band" role="img" aria-label="Four weeks of nights, coloured by home. Mostly Elm Street and Harbour Flat, one night at Rose Cottage and one on The Boat. Tonight is Elm Street."><li class="home-pine">E</li><li class="home-pine">E</li><li class="home-pine tonight">E</li><li class="home-pine">E</li><li class="home-plum">H</li><li class="home-plum">H</li><li class="home-plum">H</li><li class="home-pine">E</li><li class="home-pine">E</li><li class="home-ochre">R</li><li class="home-plum">H</li><li class="home-plum">H</li><li class="home-plum">H</li><li class="home-plum">H</li><li class="home-pine">E</li><li class="home-pine">E</li><li class="home-pine">E</li><li class="home-pine">E</li><li class="home-plum">H</li><li class="home-plum">H</li><li class="home-ocean">B</li><li class="home-pine">E</li><li class="home-pine">E</li><li class="home-pine">E</li><li class="home-pine">E</li><li class="home-plum">H</li><li class="home-plum">H</li><li class="home-plum">H</li></ul>
+        <p class="band-caption" aria-hidden="true"><span>Tonight</span><span>Four weeks, every home</span></p>
+      </div>
+    </section>
+
+    <section class="wrap section" id="how" aria-labelledby="today-title">
+      <div class="split">
+        <div>
+          <p class="eyebrow">Today</p>
+          <h2 id="today-title">The answer, before anyone asks.</h2>
+          <p class="lead">Open Famplan and tonight is already there: which home, who picks up, what travels. From six in the evening it answers for tomorrow.</p>
+          <ul class="points">
+            <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-house"/></svg><span><strong>Each home is a place.</strong> Its own colour and its own drawing, all the same size. No home is the main one.</span></li>
+            <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-bag"/></svg><span><strong>What travels.</strong> The swimming bag, the reading folder, who packed it and when.</span></li>
+            <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-swap"/></svg><span><strong>Swaps without the thread.</strong> Ask for a different night. The other home accepts with one tap.</span></li>
+          </ul>
+        </div>
+
+        <figure class="phone" aria-label="Famplan's Today screen: Mia sleeps at Elm Street tonight, Jo picks up from school at 15:30.">
+          <div class="phone-bar" aria-hidden="true"><span class="when">Monday 9 November</span><span class="icons"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-inbox"/></svg><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-gear"/></svg></span></div>
+          <div class="place home-pine" aria-hidden="true">
+            <svg focusable="false"><use href="#h-terrace"/></svg>
+            <p class="place-label"><span class="mono-sq">E</span>Tonight</p>
+            <p class="place-answer">Mia sleeps at Elm Street.</p>
+            <p class="place-line">Jo picks up from school at <strong class="num">15:30</strong>.</p>
+          </div>
+          <div aria-hidden="true">
+            <p class="mini-label">What travels</p>
+            <ul class="mini-group">
+              <li class="home-pine"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-bag"/></svg><span>Swimming bag<span class="t2">Packed by Alex · <span class="num">07:40</span></span></span></li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-book"/></svg><span>Reading folder<span class="t2">Not packed yet</span></span></li>
+            </ul>
+            <div class="wait">
+              <p><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-swap"/></svg>Alex asked to swap Sunday 15 November</p>
+              <div class="bs"><span class="b sec">Not now</span><span class="b pri">Accept</span></div>
+            </div>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <section class="wrap section" aria-labelledby="year-title">
+      <div class="split reverse">
+        <figure class="year" role="img" aria-label="A year of nights: alternate weeks at Elm Street and Harbour Flat, switching on Fridays. School holidays are underlined.">
+          <div class="year-rows" aria-hidden="true"><div class="m"><span>Jan</span><div class="cells"><i class="home-plum hol"></i><i class="home-pine hol"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-pine"></i><i class="home-pine"></i></div></div><div class="m"><span>Feb</span><div class="cells"><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-plum hol"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-pine"></i><i class="home-pine"></i></div></div><div class="m"><span>Mar</span><div class="cells"><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine hol"></i><i class="home-pine hol"></i></div></div><div class="m"><span>Apr</span><div class="cells"><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-pine hol"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i></div></div><div class="m"><span>May</span><div class="cells"><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-plum hol"></i><i class="home-plum"></i><i class="home-plum"></i></div></div><div class="m"><span>Jun</span><div class="cells"><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i></div></div><div class="m"><span>Jul</span><div class="cells"><i class="home-plum"></i><i class="home-plum"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-pine hol"></i></div></div><div class="m"><span>Aug</span><div class="cells"><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-pine hol"></i></div></div><div class="m"><span>Sep</span><div class="cells"><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i></div></div><div class="m"><span>Oct</span><div class="cells"><i class="home-pine"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-plum hol"></i><i class="home-plum"></i></div></div><div class="m"><span>Nov</span><div class="cells"><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i></div></div><div class="m"><span>Dec</span><div class="cells"><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-plum"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-pine hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i><i class="home-plum hol"></i></div></div></div>
+          <ul class="chips" aria-hidden="true">
+            <li class="chip home-pine"><span class="swatch"></span>Elm Street</li>
+            <li class="chip home-plum"><span class="swatch"></span>Harbour Flat</li>
+          </ul>
+          <p class="key" aria-hidden="true"><span><span class="key-hol"></span>School holidays</span></p>
+        </figure>
+        <div>
+          <p class="eyebrow">Your year</p>
+          <h2 id="year-title">The whole year, in a minute.</h2>
+          <p class="lead">Say how your weeks go, in your own words: “alternate weeks, switching on Fridays”. Famplan draws every night of the year, school holidays included.</p>
+          <ul class="points">
+            <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-cal"/></svg><span><strong>Each home checks its own nights.</strong> Nothing is final until every home has agreed.</span></li>
+            <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-receipt"/></svg><span><strong>Tasks and shared costs, too.</strong> Split the way your family splits them, in your own currency.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap section" aria-labelledby="who-title">
+      <div class="section-head">
+        <p class="eyebrow">Every family shape</p>
+        <h2 id="who-title">For every adult around a child.</h2>
+        <p class="lead">Parents, partners and carers, in one home or several. Nobody is “primary”, and nothing assumes who does what.</p>
+      </div>
+      <ul class="families">
+        <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-list"/></svg><h3>One home</h3><p>Share the load fairly. Tasks have names on them, so nobody has to be the one who remembers.</p></li>
+        <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-swap"/></svg><h3>Two homes</h3><p>Know which nights are whose, hand over without a long message thread, and settle the school trip.</p></li>
+        <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-cal"/></svg><h3>Blended families</h3><p>Children who move between several homes, in one combined view. You can be part of more than one family circle.</p></li>
+        <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-key"/></svg><h3>Grandparents and carers</h3><p>Just their pickups and where to go. Nothing else unless you share it.</p></li>
+      </ul>
+    </section>
+
+    <section class="wrap section" id="privacy" aria-labelledby="privacy-title">
+      <div class="privacy">
+        <div>
+          <p class="eyebrow">Privacy</p>
+          <h2 id="privacy-title">Private by default.</h2>
+          <p class="lead">Each home keeps a private space. Only what you link to a shared child crosses over.</p>
+        </div>
+        <ul class="points">
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-eye"/></svg><span><strong>You choose who sees each thing.</strong><span class="tags" aria-label="Audiences"><span class="tag">Only me</span><span class="tag">Both homes</span><span class="tag">Pickup adults</span><span class="tag">Everyone</span></span></span></li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg><span><strong>No location tracking.</strong> Famplan never asks where anyone is.</span></li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg><span><strong>No ads, no selling data.</strong> Children don’t have accounts; their details are kept on their parents’ behalf.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="wrap join" id="join" aria-labelledby="join-title">
+      <p class="eyebrow">Closed test</p>
+      <h2 class="disp section-title" id="join-title">Famplan is in a closed test.</h2>
+      <p class="lead">We’re letting families in a few at a time. Write to us with a line about how your family is set up, and we’ll send you a place.</p>
+      <div class="cta-row">
+        <a class="button button-primary" href="mailto:support@getfamplan.app?subject=Famplan%20closed%20test">Join the closed test</a>
+      </div>
+      <p class="note"><strong>Got an invite link?</strong> Open it on your phone. It shows who invited you and how to join.</p>
+    </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer lp-footer">
     <nav aria-label="Legal">
       <a href="/privacy/">Privacy</a>
       <a href="/terms/">Terms</a>
