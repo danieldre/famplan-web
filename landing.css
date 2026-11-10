@@ -339,12 +339,39 @@
   padding: 20px 18px;
 }
 
-.place svg {
+.place .p {
   position: absolute;
   right: 10px;
   top: -58px;
   width: 140px;
   height: 117px;
+}
+
+.place .p-eve,
+.place.evening .p-day {
+  opacity: 0;
+}
+
+.place.evening .p-eve {
+  opacity: 1;
+}
+
+/* Dusk: tomorrow's home lights up. Walls take its ink, windows its tint. */
+.place.evening .p-eve .wall {
+  fill: var(--hink);
+}
+
+.place.evening .p-eve .win {
+  fill: var(--tint);
+}
+
+@media (prefers-color-scheme: dark) {
+  .place.evening .p-eve .wall {
+    fill: var(--tint);
+  }
+  .place.evening .p-eve .win {
+    fill: var(--hink);
+  }
 }
 
 .place-label {
@@ -369,6 +396,7 @@
 .place-line {
   margin: 0;
   font-size: 0.9375rem;
+  min-height: 2.8em;
 }
 
 .num {
@@ -643,6 +671,158 @@
   padding-right: 24px;
 }
 
+/* Day and evening switch: the app's segmented control, ink when selected. */
+.today-demo {
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+}
+
+.seg {
+  display: inline-flex;
+  padding: 3px;
+  gap: 2px;
+  border-radius: 9px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.seg button {
+  min-height: 40px;
+  min-width: 112px;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.seg button[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+
+.mini-group .tx {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Checklist tick: the circle fills with ink and the check draws itself. */
+.tick svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+
+.tick circle {
+  fill: transparent;
+  stroke: var(--line);
+  stroke-width: 1.6;
+}
+
+.tick path {
+  fill: none;
+  stroke: var(--on-ink);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 16;
+  stroke-dashoffset: 16;
+}
+
+.tick.ticked circle,
+.ticked .tick circle {
+  fill: var(--ink);
+  stroke: var(--ink);
+}
+
+.tick.ticked path,
+.ticked .tick path {
+  stroke-dashoffset: 0;
+}
+
+/* Swap status under the band: one line cross-fades to the next. */
+.band-status {
+  display: grid;
+  text-align: end;
+}
+
+.band-status > span {
+  grid-area: 1 / 1;
+}
+
+.band-status .b,
+.band-status.on .a {
+  opacity: 0;
+}
+
+.band-status.on .b {
+  opacity: 1;
+  color: var(--text);
+}
+
+/* App stores: Phosphor's marks on ink, like every other action on the page.
+   Not links until the apps are live. */
+.stores {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 48px;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 48px 0;
+}
+
+.store-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.store {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  min-width: 236px;
+  min-height: 64px;
+  padding: 10px 22px 10px 18px;
+  border-radius: 12px;
+  background: var(--ink);
+  color: var(--on-ink);
+  box-shadow: var(--shadow-1);
+}
+
+.store-mark {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  fill: currentColor;
+}
+
+.store-small {
+  display: block;
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  opacity: 0.8;
+}
+
+.store-name {
+  display: block;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+
 /* Tablet. */
 @media (max-width: 960px) {
   .split,
@@ -652,6 +832,10 @@
   }
   .split.reverse > :first-child {
     order: 2;
+  }
+  .stores {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
   }
   .families {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -731,4 +915,124 @@
     border-color: var(--line);
     background: var(--paper);
   }
+}
+
+/* Motion, only when landing.js has set html.motion (it doesn't with Reduce
+   Motion on). Enter ease-out, move ease-in-out; durations from DESIGN.md. */
+.place,
+.place [data-k],
+.place .p,
+.place .wall,
+.place .win,
+.band li,
+.band-status > span,
+.tick circle,
+.tick path,
+.seg button {
+  transition: none;
+}
+
+.motion .place {
+  transition: background-color 240ms ease-in-out, color 240ms ease-in-out;
+}
+
+.motion .place [data-k] {
+  transition: opacity 140ms ease-in-out;
+}
+
+.motion .place.swapping [data-k] {
+  opacity: 0;
+}
+
+.motion .place .p {
+  transition: opacity 240ms ease-in-out;
+}
+
+.motion .place .wall,
+.motion .place .win {
+  transition: fill 600ms ease-in-out 120ms;
+}
+
+.motion .band li {
+  transition: background-color 240ms ease-in-out, color 240ms ease-in-out;
+}
+
+.motion .band-status > span {
+  transition: opacity 240ms ease-in-out;
+}
+
+.motion .tick circle {
+  transition: fill 180ms ease-out, stroke 180ms ease-out;
+}
+
+.motion .tick path {
+  transition: stroke-dashoffset 180ms ease-out 80ms;
+}
+
+.motion .seg button {
+  transition: background-color 180ms ease-out, color 180ms ease-out;
+}
+
+/* Hero: the homes rise onto their ground line, then the nights settle in. */
+.motion .hero .street li,
+.motion .hero .band li {
+  opacity: 0;
+}
+
+.motion .hero.go .street li {
+  animation: rise 480ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.motion .hero.go .band li {
+  animation: settle 320ms ease-out both;
+}
+
+/* The year unrolls, a month at a time. */
+.motion .year .m {
+  opacity: 0;
+}
+
+.motion .year.unroll .m {
+  animation: unroll 320ms ease-out both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: scaleY(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes unroll {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.seg button:hover {
+  color: var(--ink);
+}
+
+.seg button[aria-pressed="true"]:hover {
+  color: var(--on-ink);
 }
