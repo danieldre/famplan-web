@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; connect-src https://pcxcdeottcprfbcyjqvn.supabase.co; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow">
+  <title>You’re invited to Famplan</title>
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/config.js" defer></script>
+  <script src="/js/famplan.js" defer></script>
+  <script src="/js/referral.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="/">Famplan</a>
+  </header>
+
+  <main id="referral" aria-live="polite" aria-busy="true">
+    <h1>You’re invited to Famplan</h1>
+    <p class="muted">Loading who sent this link…</p>
+    <span class="skeleton skeleton-title"></span>
+    <span class="skeleton skeleton-line"></span>
+    <noscript>
+      <p>This page needs JavaScript to show this invite. If you already have Famplan, open the link on your phone.</p>
+    </noscript>
+  </main>
+
+  <footer class="site-footer">
+    <nav aria-label="Legal">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+      <a href="/imprint/">Imprint</a>
+    </nav>
+  </footer>
+</body>
+</html>

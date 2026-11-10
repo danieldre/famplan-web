@@ -1,0 +1,524 @@
+/* Famplan public pages. Tokens from DESIGN.md: ink on paper, no brand hue;
+   the only colour belongs to a family's homes. Fonts are self-hosted (OFL 1.1). */
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible Next';
+  src: url('/fonts/AtkinsonHyperlegibleNext_400Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Atkinson Hyperlegible Next';
+  src: url('/fonts/AtkinsonHyperlegibleNext_700Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Atkinson Hyperlegible Mono';
+  src: url('/fonts/AtkinsonHyperlegibleMono_400Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  src: url('/fonts/BricolageGrotesque_700Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light dark;
+  --ink: #16191c;
+  --on-ink: #f4f5f1;
+  --paper: #f4f5f1;
+  --surface: #ffffff;
+  --text: #16191c;
+  --muted: #5a6066;
+  --line: #daddd8;
+  --error: #b3261e;
+  --warning: #8a5a00;
+  --shadow-1: 0 1px 2px rgba(22, 25, 28, 0.06), 0 4px 12px rgba(22, 25, 28, 0.05);
+  --shadow-2: 0 2px 4px rgba(22, 25, 28, 0.06), 0 12px 28px rgba(22, 25, 28, 0.1);
+  --raised: #ffffff;
+  --body: 'Atkinson Hyperlegible Next', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --display: 'Bricolage Grotesque', var(--body);
+  --mono: 'Atkinson Hyperlegible Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #eef0ec;
+    --on-ink: #121416;
+    --paper: #121416;
+    --surface: #1c1f22;
+    --raised: #25292d;
+    --text: #eef0ec;
+    --muted: #a3a9ae;
+    --line: #2e3236;
+    --error: #ff8a7f;
+    --warning: #e8b45c;
+    --shadow-1: none;
+    --shadow-2: none;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 1.0625rem; /* 17 */
+  line-height: 1.45;
+}
+
+main,
+.site-header,
+.site-footer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+main {
+  padding-bottom: 48px;
+}
+
+.site-header {
+  padding-top: 24px;
+  padding-bottom: 8px;
+}
+
+.wordmark {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.5rem; /* 24, the Bricolage floor */
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+h1 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 2rem; /* 32 */
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 24px 0 12px;
+}
+
+h2 {
+  font-size: 1.25rem; /* 20 heading, Atkinson */
+  line-height: 1.3;
+  margin: 32px 0 8px;
+}
+
+h3 {
+  font-size: 1.0625rem;
+  margin: 24px 0 4px;
+}
+
+p,
+ul,
+ol {
+  margin: 0 0 12px;
+}
+
+ul,
+ol {
+  padding-inline-start: 1.25em;
+}
+
+li + li {
+  margin-top: 4px;
+}
+
+a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.lead {
+  font-size: 1.25rem;
+  line-height: 1.35;
+}
+
+.muted,
+.secondary {
+  color: var(--muted);
+}
+
+.secondary {
+  font-size: 0.9375rem; /* 15 */
+  line-height: 1.4;
+}
+
+.label {
+  font-size: 0.8125rem; /* 13 */
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--muted);
+  margin: 24px 0 8px;
+}
+
+.mono {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Groups: white, radius 12, level 1. */
+.group {
+  background: var(--surface);
+  border-radius: 12px;
+  box-shadow: var(--shadow-1);
+  padding: 16px;
+  margin: 0 0 24px;
+}
+
+.group > :first-child {
+  margin-top: 0;
+}
+
+.group > :last-child {
+  margin-bottom: 0;
+}
+
+.raised {
+  background: var(--raised);
+  box-shadow: var(--shadow-2);
+}
+
+/* Buttons: ink primary, secondary on surface. Min 48 high. */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: 0;
+}
+
+.button:active {
+  opacity: 0.85;
+}
+
+.button-primary {
+  background: var(--ink);
+  color: var(--on-ink);
+  box-shadow: var(--shadow-1);
+}
+
+.button-secondary {
+  background: var(--surface);
+  color: var(--ink);
+  border: 1.5px solid var(--line);
+}
+
+.button-block {
+  display: flex;
+  width: 100%;
+}
+
+.actions {
+  margin: 24px 0;
+}
+
+/* Messages: icon and words, never colour alone. */
+.message {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 0 0 24px;
+  background: var(--surface);
+}
+
+.message svg {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  margin-top: 1px;
+}
+
+.message-error svg {
+  color: var(--error);
+}
+
+.message-warning svg {
+  color: var(--warning);
+}
+
+.message p:last-child {
+  margin-bottom: 0;
+}
+
+/* Draft banner on legal pages. */
+.draft {
+  border: 1.5px dashed var(--muted);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin: 16px 0 8px;
+  font-weight: 700;
+}
+
+.draft span {
+  display: block;
+  font-weight: 400;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.placeholder {
+  font-family: var(--mono);
+  font-size: 0.9375rem;
+  background: var(--surface);
+  border: 1px dashed var(--muted);
+  border-radius: 4px;
+  padding: 0 4px;
+}
+
+/* Household chip: pill, home tint behind, home ink text, a square in the band colour. */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 12px;
+}
+
+.chips li {
+  margin: 0;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  padding: 4px 12px 4px 8px;
+  border-radius: 9999px;
+  background: var(--tint, var(--paper));
+  color: var(--tint-ink, var(--text));
+  font-weight: 700;
+  font-size: 0.9375rem;
+}
+
+.chip .swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background: var(--band, var(--muted));
+}
+
+.chip-plain {
+  background: var(--paper);
+  color: var(--text);
+  border: 1.5px solid var(--line);
+  padding-left: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .chip {
+    background: var(--tint-dark, var(--tint, var(--paper)));
+    color: var(--tint-ink-dark, var(--tint-ink, var(--text)));
+  }
+  .chip .swatch {
+    background: var(--band-dark, var(--band, var(--muted)));
+  }
+}
+
+/* The next nights: one cell per night in the home's band colour, initial inside. */
+.nights {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 2px;
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 4px;
+}
+
+.nights li {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.night-day {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  line-height: 1.2;
+  text-align: center;
+}
+
+.night-day .mono {
+  display: block;
+  color: var(--text);
+}
+
+.night {
+  width: 100%;
+  min-height: 30px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  background: var(--band, var(--muted));
+  color: var(--on-band, #fff);
+}
+
+.night.tonight {
+  outline: 2px solid var(--ink);
+  outline-offset: 1px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .night {
+    background: var(--band-dark, var(--band, var(--muted)));
+    color: var(--on-band-dark, var(--on-band, #fff));
+  }
+}
+
+.child-schedule + .child-schedule {
+  margin-top: 24px;
+}
+
+.child-schedule h3 {
+  margin-top: 0;
+}
+
+/* Loading skeleton keeps the real labels. */
+.skeleton {
+  display: block;
+  background: var(--line);
+  border-radius: 6px;
+  height: 1em;
+  margin: 8px 0;
+}
+
+.skeleton-title {
+  height: 2rem;
+  width: 80%;
+}
+
+.skeleton-line {
+  width: 60%;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+  padding-bottom: 32px;
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+
+.site-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  margin-bottom: 8px;
+}
+
+.site-footer a {
+  color: var(--muted);
+  display: inline-block;
+  padding: 8px 0;
+}
+
+/* Legal pages: a short table of contents and readable sections. */
+.toc ol {
+  columns: 2 220px;
+  column-gap: 24px;
+}
+
+.legal section {
+  scroll-margin-top: 16px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0 0 16px;
+  font-size: 0.9375rem;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin: 0 0 16px;
+  background: var(--surface);
+  border-radius: 12px;
+  box-shadow: var(--shadow-1);
+}
+
+.table-wrap table {
+  margin: 0;
+}
+
+th,
+td {
+  text-align: start;
+  vertical-align: top;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+tr:last-child td {
+  border-bottom: 0;
+}
+
+th {
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+@media (min-width: 640px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .skeleton {
+    animation: pulse 1.2s ease-in-out infinite alternate;
+  }
+  @keyframes pulse {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0.5;
+    }
+  }
+}
