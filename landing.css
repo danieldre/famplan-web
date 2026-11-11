@@ -104,7 +104,7 @@
   font-size: clamp(1.125rem, 2vw, 1.375rem);
   line-height: 1.4;
   color: var(--muted);
-  max-width: 34ch;
+  max-width: 38ch;
   margin: 24px auto 32px;
 }
 
@@ -182,8 +182,8 @@
 
 /* Four weeks of nights, coloured by home, each with its initial. */
 .band-wrap {
-  max-width: 1072px;
-  margin: 56px auto 0;
+  max-width: 760px;
+  margin: 48px auto 0;
 }
 
 .band {
@@ -216,15 +216,32 @@
   display: flex;
   justify-content: space-between;
   gap: 16px;
-  margin-top: 12px;
-  font-family: var(--mono);
+  margin: 10px 0 0;
   font-size: 0.8125rem;
+  font-weight: 700;
   color: var(--muted);
 }
 
 /* Sections. */
 .section {
-  padding-top: 112px;
+  padding-top: 120px;
+}
+
+/* No orphans: balanced headings, paragraphs that don't end on one word. */
+.landing h1,
+.landing h2,
+.landing h3 {
+  text-wrap: balance;
+}
+
+.landing p,
+.landing li {
+  text-wrap: pretty;
+}
+
+/* Browsers indent figures by 40px; these are drawings, not quotes. */
+.landing figure {
+  margin: 0;
 }
 
 .section-head {
@@ -293,11 +310,6 @@
   width: 0;
   height: 0;
   overflow: hidden;
-}
-
-.join h2 {
-  font-size: clamp(2.25rem, 5.5vw, 3.75rem);
-  margin: 0 0 16px;
 }
 
 /* The phone: Today, drawn with the app's own components. */
@@ -646,14 +658,20 @@
   padding: 2px 10px;
 }
 
-/* Closing call to action. */
-.join {
+/* Closing: join the test now, the stores later. */
+.closing {
   text-align: center;
-  padding-top: 120px;
-  padding-bottom: 112px;
+  padding-top: 136px;
+  padding-bottom: 104px;
+}
+
+.join h2 {
+  font-size: clamp(2.25rem, 5.5vw, 3.75rem);
+  margin: 0 0 16px;
 }
 
 .join .lead {
+  color: var(--muted);
   max-width: 40ch;
   margin: 0 auto 32px;
 }
@@ -666,9 +684,14 @@
 }
 
 .lp-footer {
-  max-width: 1120px;
-  padding-left: 24px;
-  padding-right: 24px;
+  width: min(1072px, 100% - 48px);
+  margin: 0 auto;
+}
+
+.lp-footer .site-footer {
+  max-width: none;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 /* Day and evening switch: the app's segmented control, ink when selected. */
@@ -768,18 +791,28 @@
 /* App stores: Phosphor's marks on ink, like every other action on the page.
    Not links until the apps are live. */
 .stores {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 48px;
-  align-items: center;
+  max-width: 560px;
+  margin: 72px auto 0;
+  padding-top: 56px;
   border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  padding: 48px 0;
+}
+
+.stores h2 {
+  font-size: 1.25rem;
+  line-height: 1.3;
+  margin: 0 0 8px;
+}
+
+.stores-lead {
+  color: var(--muted);
+  margin: 0 auto 24px;
+  max-width: 44ch;
 }
 
 .store-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 12px;
   margin: 0;
   padding: 0;
@@ -798,6 +831,7 @@
   background: var(--ink);
   color: var(--on-ink);
   box-shadow: var(--shadow-1);
+  text-align: start;
 }
 
 .store-mark {
@@ -833,10 +867,6 @@
   .split.reverse > :first-child {
     order: 2;
   }
-  .stores {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 28px;
-  }
   .families {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -847,10 +877,46 @@
 
 /* Phone. */
 @media (max-width: 640px) {
-  .wrap,
-  .lp-footer {
+  .wrap {
     padding-left: 16px;
     padding-right: 16px;
+  }
+  .lp-footer {
+    width: calc(100% - 32px);
+  }
+  .lp-nav .button {
+    min-height: 44px;
+    font-size: 0.875rem;
+    background: var(--surface);
+    color: var(--ink);
+    border: 1.5px solid var(--line);
+    box-shadow: none;
+  }
+  .families li {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    column-gap: 12px;
+    padding: 18px 16px;
+  }
+  .families li .icon {
+    grid-row: 1 / span 2;
+    margin-top: 1px;
+  }
+  .families h3 {
+    margin: 0 0 4px;
+  }
+  .closing {
+    padding-top: 96px;
+    padding-bottom: 72px;
+  }
+  .stores {
+    margin-top: 56px;
+    padding-top: 40px;
+  }
+  .store {
+    min-width: 0;
+    width: 100%;
+    justify-content: center;
   }
   .lp-nav a:not(.button) {
     display: none;
@@ -902,10 +968,6 @@
   }
   .cells i {
     height: 14px;
-  }
-  .join {
-    padding-top: 88px;
-    padding-bottom: 80px;
   }
 }
 
